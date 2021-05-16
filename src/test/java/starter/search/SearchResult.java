@@ -6,7 +6,7 @@ import net.serenitybdd.screenplay.questions.TextContent;
 import java.util.Collection;
 
 public class SearchResult {
-    public static Question<Collection<String>> titles() {
-        return actor -> TextContent.of(SearchResultList.RESULT_TITLES).viewedBy(actor).asList();
+    public static Question<String> titles() {
+        return actor -> TextContent.of(SearchForm.RESULT_TITLES).viewedBy(actor).asString().trim();
     }
 }

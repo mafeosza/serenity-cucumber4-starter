@@ -8,10 +8,12 @@ import cucumber.api.java.eo.Se;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.ensure.Ensure;
+import starter.dashboard.MyAccount;
 import starter.navigation.NavigateTo;
 import starter.search.SearchFor;
 import starter.search.SearchResult;
 
+import static com.google.common.base.Predicates.equalTo;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.*;
 import static org.hamcrest.Matchers.*;
@@ -39,18 +41,9 @@ public class SearchOnDuckDuckGoStepDefinitions {
 
     @Then("all the result titles should contain the word {string}")
     public void all_the_result_titles_should_contain_the_word(String term) {
-        withCurrentActor(
-                Ensure.thatTheAnswersTo(SearchResult.titles())
-                        .allMatch("a title containing '" + term + "'",
-                                title -> title.toLowerCase().contains(term.toLowerCase()))
-
-        );
-
+        //System.out.println("*+++++++ACAAAAAAAAAAAAAAAAAAAAAAAAAAAa****+++"+SearchResult.titles().answeredBy(theActorInTheSpotlight()));
         theActorInTheSpotlight().should(
-                seeThat("search result titles",
-                        SearchResult.titles(), hasSize(greaterThan(0))),
-                seeThat("search result titles",
-                        SearchResult.titles(), everyItem(containsIgnoringCase(term)))
+                seeThat("Search Success:", SearchResult.titles(),equalTo("\"dress\""))
         );
     }
 }
